@@ -1,25 +1,26 @@
-import React from "react";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React from 'react'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import AccountStackNavigator from './stack-navigators/AccountStackNavigator';
+import CategoryStackNavigator from './stack-navigators/CategoryStackNavigator';
+import FeedAddStackNavigator from './stack-navigators/FeedAddStackNavigator';
+import MainPageStackNavigator from './stack-navigators/MainPageStackNavigator';
+import SearchStackNavigator from './stack-navigators/SearchStackNavigator';
 import { Ionicons } from '@expo/vector-icons';
-import category from "../screens/category";
-import mainPage from "../screens/mainPage";
-import feedAdd from "../screens/feedAdd";
-import search from "../screens/search";
-import account from "../screens/account";
 
-const Tab = createBottomTabNavigator();
-const Tabs = () => {
+
+const Tab = createBottomTabNavigator()
+
+const BottomTabNavigator = () => {
     return (
         <Tab.Navigator
             initialRouteName="mainPage"
             screenOptions={{
-                tabBarStyle: { height: 100 },
+                tabBarStyle: { height: 70 },
                 tabBarShowLabel: false,
-            }}
-        >
-            <Tab.Screen
-                name="category_header"
-                component={category} options={{
+                headerShown: true,
+            }}>
+            <Tab.Screen name="category" component={CategoryStackNavigator}
+                options={{
                     tabBarIcon: ({ focused, color, size }) => {
                         return (
                             <Ionicons
@@ -27,11 +28,9 @@ const Tabs = () => {
                                 size={35}
                                 color={color} />)
                     }
-                }}
-            />
-            <Tab.Screen
-                name="mainPage_header"
-                component={mainPage} options={{
+                }} />
+            <Tab.Screen name="mainPage" component={MainPageStackNavigator}
+                options={{
                     tabBarIcon: ({ focused, color, size }) => {
                         return (
                             < Ionicons
@@ -39,23 +38,19 @@ const Tabs = () => {
                                 size={35}
                                 color={color} />)
                     }
-                }}
-            />
-            <Tab.Screen
-                name="feedAdd_header"
-                component={feedAdd} options={{
+                }} />
+            <Tab.Screen name="feedAdd" component={FeedAddStackNavigator}
+                options={{
                     tabBarIcon: ({ focused, color, size }) => {
                         return (
                             <Ionicons
                                 name={focused ? "add" : "add-outline"}
-                                size={60}
+                                size={65}
                                 color={color} />)
                     }
-                }}
-            />
-            <Tab.Screen
-                name="search_header"
-                component={search} options={{
+                }} />
+            <Tab.Screen name="search" component={SearchStackNavigator}
+                options={{
                     tabBarIcon: ({ focused, color, size }) => {
                         return (
                             <Ionicons
@@ -63,11 +58,9 @@ const Tabs = () => {
                                 size={35}
                                 color={color} />)
                     }
-                }}
-            />
-            <Tab.Screen
-                name="account_header"
-                component={account} options={{
+                }} />
+            <Tab.Screen name="account" component={AccountStackNavigator}
+                options={{
                     tabBarIcon: ({ focused, color, size }) => {
                         return (
                             <Ionicons
@@ -75,9 +68,9 @@ const Tabs = () => {
                                 size={35}
                                 color={color} />)
                     }
-                }}
-            />
+                }} />
         </Tab.Navigator>
     )
-};
-export default Tabs;
+}
+
+export default BottomTabNavigator
