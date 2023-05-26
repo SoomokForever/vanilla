@@ -1,23 +1,22 @@
 import React from 'react'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import AccountStackNavigator from './stack-navigators/AccountStackNavigator';
 import CategoryStackNavigator from './stack-navigators/CategoryStackNavigator';
 import FeedAddStackNavigator from './stack-navigators/FeedAddStackNavigator';
 import MainPageStackNavigator from './stack-navigators/MainPageStackNavigator';
 import SearchStackNavigator from './stack-navigators/SearchStackNavigator';
 import { Ionicons } from '@expo/vector-icons';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+const Tab = createBottomTabNavigator();
 
-const Tab = createBottomTabNavigator()
-
-const BottomTabNavigator = () => {
+const BottomTabNavigator = ({navigation}) => {
     return (
         <Tab.Navigator
             initialRouteName="mainPage"
             screenOptions={{
-                tabBarStyle: { height: 70 },
-                tabBarShowLabel: false,
+                tabBarStyle: { height: 65 },
                 headerShown: true,
+                tabBarShowLabel: false
             }}>
             <Tab.Screen name="category" component={CategoryStackNavigator}
                 options={{
@@ -26,7 +25,8 @@ const BottomTabNavigator = () => {
                             <Ionicons
                                 name={focused ? "ios-list-sharp" : "ios-list-outline"}
                                 size={35}
-                                color={color} />)
+                                color={color}
+                                onPress={() => navigation.openDrawer()} />)
                     }
                 }} />
             <Tab.Screen name="mainPage" component={MainPageStackNavigator}

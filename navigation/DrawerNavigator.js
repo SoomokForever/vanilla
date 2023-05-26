@@ -10,9 +10,9 @@ const Drawer = createDrawerNavigator()
 const DrawerNavigator = () => {
     return(
         <Drawer.Navigator screenOptions={{headerShown: false}}>
-            <Drawer.Screen name="mainStak" component={BottomTabNavigator} />
-            <Drawer.Screen name="twoStack" component={TwoStackNavigator}/>
-            <Drawer.Screen name="threeStack" component={LocationsStackNavigator}/>
+            <Drawer.Screen name="mainDrawer" component={BottomTabNavigator} />
+            <Drawer.Screen name="twoDrawer" component={TwoStackNavigator}/>
+            <Drawer.Screen name="threeDrawer" component={LocationsStackNavigator}/>
         </Drawer.Navigator>
     )
 }
