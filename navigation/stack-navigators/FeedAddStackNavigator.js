@@ -1,16 +1,14 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
-import feedAdd from '../../screens/feedAdd';
-import FeedAdd from '../../screens/feedAdd';
 
 const Stack = createStackNavigator()
 
-// const FeedAdd = () => (
-//   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-//     <Text>FeedAdd screen!</Text>
-//   </View>
-// )
+const FeedAdd = () => (
+  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <Text>FeedAdd screen!</Text>
+  </View>
+)
 
 const FeedAddStackNavigator = () => {
   return (
