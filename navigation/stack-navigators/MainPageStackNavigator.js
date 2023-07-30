@@ -1,12 +1,12 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { View, Text } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 
 const Stack = createStackNavigator();
 
 const MainPage = () => (
-    <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
-        <Text>MainPage Screen!</Text>
+    <View>
+        <Text>hi</Text>
     </View>
 )
 
@@ -21,3 +21,10 @@ const MainPageStackNavigator = () => {
 }
 
 export default MainPageStackNavigator
+
+const styles = StyleSheet.create({
+    safeArea: {
+      flex: 1,
+      overflow: 'hidden',
+    },
+})

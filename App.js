@@ -11,7 +11,7 @@ export default function App() {
       </NavigationContainer>
     </SafeAreaView>
   );
-}``
+}
 
 const styles = StyleSheet.create({
   safeArea: {

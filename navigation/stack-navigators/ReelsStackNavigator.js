@@ -4,20 +4,20 @@ import { View, Text } from 'react-native';
 
 const Stack = createStackNavigator();
 
-const Category = () => (
+const Reels = () => (
     <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
-        <Text>Category Screen!</Text>
+        <Text>Reels Screen!</Text>
     </View>
 )
 
-const CategoryStackNavigator = () => {
+const ReelsStackNavigator = () => {
     return(
         <Stack.Navigator screenOptions={{
             headerShown: false,
         }}>
-            <Stack.Screen name="categoryStack" component={Category}/>
+            <Stack.Screen name="ReelsStack" component={Reels}/>
         </Stack.Navigator>
     )
 }
 
-export default CategoryStackNavigator
+export default ReelsStackNavigator
