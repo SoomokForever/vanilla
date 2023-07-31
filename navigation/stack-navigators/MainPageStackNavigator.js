@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 const MainPageStackNavigator = () => {
     return (
         <Stack.Navigator screenOptions={{
-            headerShown: true,
+            headerShown: false,
         }}>
             <Stack.Screen name="Vanilla" component={ListFeed} />
         </Stack.Navigator>

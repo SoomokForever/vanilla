@@ -18,19 +18,17 @@ const BottomTabNavigator = ({navigation}) => {
                 tabBarStyle: {
                     display: 'flex',
                     position: 'absolute',
-                    bottom: 8,
+                    bottom: -25,
                     left: 10,
                     right: 10,
                     backgroundColor: '#5352ed',
                     borderRadius: 30,
-                    height: 60,
+                    height: 110,
                 },
-                lazy:true,
                 tabBarIndicatorStyle: { height:0 },
                 tabBarActiveTintColor: '#7bed9f',
                 tabBarInactiveTintColor: '#ffffff',
                 tabBarShowLabel: false,
-                headerShown: true,
             }}
             >
             <Tab.Screen name="main" component={MainPageStackNavigator}

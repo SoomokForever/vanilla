@@ -5,11 +5,9 @@ import DrawerNavigator from './navigation/DrawerNavigator';
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.safeArea}>
       <NavigationContainer>
         <DrawerNavigator/>
       </NavigationContainer>
-    </SafeAreaView>
   );
 }
 

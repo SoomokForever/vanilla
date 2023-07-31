@@ -1,6 +1,9 @@
-import React from "react";
-import { FlatList, View, StyleSheet, Image, Text } from "react-native";
+import React, { useState } from "react";
+import { FlatList, View, StyleSheet, Image, Text, TouchableOpacity, Button } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
+import { Dimensions } from 'react-native';
+
+const { w_width, w_height } = Dimensions.get('window');
 
 const DATA = [
     {
@@ -102,36 +105,67 @@ const DATA = [
 ];
 
 const Item = ({ title, profileImage, name, location, feedImage, likes, comment, likesProfile, likesName }) => (
-    <View style={styles.card}>
-        <View style={styles.row}>
+    <View style={styles.container}>
+        <View style={styles.card}>
+            <View style={styles.firstColumn}>
+                <Image
+                    style={styles.profileImage}
+                    source={{
+                        uri: 'https://reactnative.dev/img/tiny_logo.png',
+                    }}
+                />
+                <View style={styles.profileTexts}>
+                    <Text style={styles.name}>{name}</Text>
+                    <Text style={styles.location}>{location}</Text>
+                </View>
+                <Ionicons name="ellipsis-horizontal-sharp" size={28} color="black" style={{ justifyContent: 'center', alignItems: 'center' }} />
+            </View>
             <Image
-                style={styles.tinyLogo}
+                style={styles.feedImage}
                 source={{
-                    uri: 'https://reactnative.dev/img/tiny_logo.png',
+                    uri: 'https://mblogthumb-phinf.pstatic.net/MjAyMjAxMjVfMjAy/MDAxNjQzMTAyOTk2NjE0.gw_H_jjBM64svaftcnheR6-mHHlmGOyrr6htAuxPETsg.8JJSQNEA5HX2WmrshjZ-VjmJWqhmgE40Qm5csIud9VUg.JPEG.minziminzi128/IMG_7374.JPG?type=w800',
                 }}
             />
-            <View style={{ flexDirection: 'column', marginLeft: 10 }}>
-                <Text style={styles.name}>{name}</Text>
-                <Text style={styles.location}>{location}</Text>
+            <View style={styles.secondColumn}>
+                <TouchableOpacity style={styles.likes}>
+                    <Ionicons name="heart-outline" size={24} color="black" />
+                    <Text>{likes}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.comment}>
+                    <Ionicons name="md-chatbubble-outline" size={24} color="black" />
+                    <Text>{comment}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.share}>
+                    <Ionicons name="md-paper-plane-sharp" size={24} color="black" />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.bookmark}>
+                    <Ionicons name="bookmark-outline" size={24} color="black" />
+                </TouchableOpacity>
             </View>
-        </View>
-        <Image
-            style={styles.feedImage}
-            source={{
-                uri: 'https://i.pinimg.com/736x/22/98/30/229830112ff46e0d71b8aba71619f369.jpg',
-            }}
-        />
-        <View style={styles.row}>
-            <View style={styles.likes}>
-                <Ionicons name="heart-outline" size={24} color="black" />
-                <Text style={{ marginLeft: 5 }}>{likes}</Text>
+            <View style={styles.thirdColumn}>
+                <Image
+                    style={styles.likesProfileHeader}
+                    source={{
+                        uri: 'https://reactnative.dev/img/tiny_logo.png',
+                    }}
+                />
+                <Image
+                    style={styles.likesProfileSecond}
+                    source={{
+                        uri: 'https://reactnative.dev/img/tiny_logo.png',
+                    }}
+                />
+                <Image
+                    style={styles.likesProfileThird}
+                    source={{
+                        uri: 'https://reactnative.dev/img/tiny_logo.png',
+                    }}
+                />
+                <Text style={styles.likesName}>{likesName}</Text>
+                <TouchableOpacity style={styles.more}>
+                    <Text style={{fontSize:13}}>More</Text>
+                </TouchableOpacity>
             </View>
-            <View style={styles.comment}>
-                <Ionicons name="md-chatbubble-outline" size={24} color="black" />
-                <Text>{comment}</Text>
-            </View>
-            <Image />
-            <Image />
         </View>
     </View>
 );
@@ -140,9 +174,10 @@ const ListFeed = () => {
     return (
         <FlatList
             data={DATA}
-            renderItem={({ item }) => <Item name={item.name} location={item.location} likes={item.likes} comment={item.comment} />}
+            renderItem={({ item }) => <Item name={item.name} location={item.location} likes={item.likes} comment={item.comment} likesName={item.likesName} />}
             keyExtractor={item => item.id}
-            contentContainerStyle={{ paddingBottom: 90 }}
+            contentContainerStyle={{ paddingBottom: 100, paddingTop: 55 }}
+            style={{ overflow: 'hidden' }}
         />
     );
 };
@@ -150,46 +185,134 @@ const ListFeed = () => {
 export default ListFeed
 
 const styles = StyleSheet.create({
+    container: {
+        width: w_width,
+        height: w_height,
+        flex: 1,
+    },
     card: {
         backgroundColor: '#ffffff',
-        padding: 20,
-        marginVertical: 15,
-        marginHorizontal: 25,
         borderRadius: 30,
+        width: '90%',
+        marginHorizontal: '5%',
+        marginVertical: 10,
         overflow: 'hidden',
     },
+    firstColumn: {
+        width: '92%',
+        marginHorizontal: '4%',
+        marginVertical: '4%',
+        flexDirection: 'row',
+        overflow: 'hidden',
+    },
+    profileImage: {
+        width: '10%',
+        height: 32.7,
+        borderRadius: 90,
+    },
+    profileTexts: {
+        width: '71%',
+        marginHorizontal: '2%',
+    },
     name: {
-        fontSize: 15,
-        alignItems: 'center',
         fontWeight: 'bold',
+        fontSize: 15,
     },
     location: {
         fontSize: 11,
         color: "#808e9b"
     },
-    tinyLogo: {
-        width: 30,
-        height: 30,
-        borderRadius: 90,
-        alignItems: 'center',
-    },
     feedImage: {
-        resizeMode: 'contain',
-        width: 60,
-        height: 60,
-        marginTop: 15,
+        width: '92%',
+        height: 300,
+        marginHorizontal: '4%',
+        marginBottom: '3%',
+        borderRadius: 20,
     },
-    row: {
+    secondColumn: {
         flexDirection: 'row',
         justifyContent: 'flex-start',
+        width: '90%',
+        marginHorizontal: '5%',
+        marginBottom: '2%',
     },
     likes: {
         flexDirection: 'row',
-        justifyContent: 'flex-start',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        width: '23%',
+        borderRadius: 10,
+        marginRight: '5%',
+        backgroundColor: "#d2dae2",
     },
     comment: {
         flexDirection: 'row',
-        justifyContent: 'flex-start',
-        marginLeft: 15,
-    }
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        width: '23%',
+        borderRadius: 10,
+        marginRight: '5%',
+        backgroundColor: "#d2dae2",
+
+    },
+    share: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '10%',
+        marginRight: '24%',
+    },
+    bookmark: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '10%',
+    },
+    thirdColumn: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '90%',
+        marginHorizontal: '5%',
+        marginBottom: '3%',
+    },
+    likesProfileHeader: {
+        width: '10%',
+        height: 32,
+        borderRadius: 90,
+        borderColor: "#ffffff",
+        borderWidth: 2,
+        zIndex: 3,
+    },
+    likesProfileSecond: {
+        width: '10%',
+        height: 32,
+        borderRadius: 90,
+        borderColor: "#ffffff",
+        borderWidth: 2,
+        marginLeft: -12,
+        overflow: 'hidden',
+        zIndex: 2,
+    },
+    likesProfileThird: {
+        width: '10%',
+        height: 32,
+        borderRadius: 90,
+        borderColor: "#ffffff",
+        borderWidth: 2,
+        marginLeft: -12,
+        overflow: 'hidden',
+        zIndex: 1,
+    },
+    likesName: {
+        fontSize: 15,
+        width: '52%',
+        marginLeft: '5%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    more: {
+        backgroundColor:"#d2dae2",
+        borderRadius: 15,
+        paddingHorizontal: '5%',
+        paddingVertical: '2%',
+    },
 });
