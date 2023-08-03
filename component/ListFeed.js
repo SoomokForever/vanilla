@@ -3,7 +3,8 @@ import { FlatList, View, StyleSheet, Image, Text, TouchableOpacity, Button } fro
 import { Ionicons } from '@expo/vector-icons';
 import { Dimensions } from 'react-native';
 
-const { w_width, w_height } = Dimensions.get('window');
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const DATA = [
     {
@@ -163,7 +164,7 @@ const Item = ({ title, profileImage, name, location, feedImage, likes, comment, 
                 />
                 <Text style={styles.likesName}>{likesName}</Text>
                 <TouchableOpacity style={styles.more}>
-                    <Text style={{fontSize:13}}>More</Text>
+                    <Text style={{ fontSize: 13 }}>More</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -176,8 +177,7 @@ const ListFeed = () => {
             data={DATA}
             renderItem={({ item }) => <Item name={item.name} location={item.location} likes={item.likes} comment={item.comment} likesName={item.likesName} />}
             keyExtractor={item => item.id}
-            contentContainerStyle={{ paddingBottom: 100, paddingTop: 55 }}
-            style={{ overflow: 'hidden' }}
+            style={{ overflow: 'hidden'}}
         />
     );
 };
@@ -186,8 +186,6 @@ export default ListFeed
 
 const styles = StyleSheet.create({
     container: {
-        width: w_width,
-        height: w_height,
         flex: 1,
     },
     card: {
@@ -310,7 +308,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     more: {
-        backgroundColor:"#d2dae2",
+        backgroundColor: "#d2dae2",
         borderRadius: 15,
         paddingHorizontal: '5%',
         paddingVertical: '2%',

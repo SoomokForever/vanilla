@@ -1,6 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { View, Text } from 'react-native';
+import ReelsFeed from "../../component/ReelsFeed";
 
 const Stack = createStackNavigator();
 
@@ -15,7 +16,7 @@ const ReelsStackNavigator = () => {
         <Stack.Navigator screenOptions={{
             headerShown: false,
         }}>
-            <Stack.Screen name="ReelsStack" component={Reels}/>
+            <Stack.Screen name="ReelsStack" component={ReelsFeed}/>
         </Stack.Navigator>
     )
 }

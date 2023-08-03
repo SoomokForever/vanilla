@@ -6,10 +6,14 @@ import SearchStackNavigator from './stack-navigators/SearchStackNavigator';
 import { Ionicons } from '@expo/vector-icons';
 import ReelsStackNavigator from './stack-navigators/ReelsStackNavigator';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { Dimensions } from 'react-native';
 
 const Tab = createMaterialTopTabNavigator();
 
-const BottomTabNavigator = ({navigation}) => {
+const BottomTabNavigator = ({ navigation }) => {
+    const windowWidth = Dimensions.get('window').width;
+    const windowHeight = Dimensions.get('window').height;
+
     return (
         <Tab.Navigator
             initialRouteName="main"
@@ -17,20 +21,17 @@ const BottomTabNavigator = ({navigation}) => {
             screenOptions={{
                 tabBarStyle: {
                     display: 'flex',
-                    position: 'absolute',
-                    bottom: -25,
-                    left: 10,
-                    right: 10,
                     backgroundColor: '#5352ed',
-                    borderRadius: 30,
-                    height: 110,
+                    borderTopStartRadius: 30,
+                    borderTopEndRadius: 30,
+                    height: windowHeight*0.1,
                 },
-                tabBarIndicatorStyle: { height:0 },
+                tabBarIndicatorStyle: { height: 0 },
                 tabBarActiveTintColor: '#7bed9f',
                 tabBarInactiveTintColor: '#ffffff',
                 tabBarShowLabel: false,
             }}
-            >
+        >
             <Tab.Screen name="main" component={MainPageStackNavigator}
                 options={{
                     tabBarIcon: ({ focused, color }) => {
